@@ -1,0 +1,5 @@
+# Vim files
+*.swp
+
+# We don't want to store the fonts
+Fonts/*

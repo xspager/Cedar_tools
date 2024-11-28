@@ -12,6 +12,7 @@ You shoud go try some full system emulators, most are courtesy of the [Living Co
 - ContraAltoJS: port of the next Alto emulator to run inside the browser https://archives.loomcom.com/contraltojs/
 - ContraAlto: an Alto emulator for dotnet and mono (like for Linux and other OSs that run Mono) https://github.com/livingcomputermuseum/ContrAlto
 - Darkstar: an Xerox Dandelion workstation emulator for dotnet and mono (same as the above) https://github.com/livingcomputermuseum/Darkstar
+- Dwarf, a Mesa machine architecture emulator for Xerox 6085 and Guam workstations https://github.com/devhawala/dwarf
 
 
 ## Research
@@ -46,6 +47,37 @@ I'll include instructions on how I manage to run a version of the Cedar system o
 This repository will holds some incomplete tools and experiments with code and fonts from Xerox PARC filesystem archive https://xeroxparcarchive.computerhistory.org/Xerox_PARC_source_code.html and documents my work.
 
 
+## My goals
+- [x] [Hello world in BCLP on the Alto](#hello-world-in-bcpl)
+- [ ] Hello world in Mesa
+- [ ] Hello world in Cedar
+- [ ] HTTP server maybe? :raised_eyebrow:
+- [ ] Get Mimosa to generate C code that compiles and run Linux :exploding_head:
+- [ ] Compile Cedar for Linux :exploding_head:
+
+## Goal details
+
+### Hello world in BCPL
+
+Thanks to http://www.righto.com/2016/06/hello-world-in-bcpl-language-on-xerox.html
+
+```c
+// Hello, World!
+get "streams.d"
+external
+[
+  Ws
+]
+
+let Main() be
+[
+  Ws("Hello, World!*N")
+]
+```
+
+![Hello world in BCPL running on the ContrAltoJS](misc/hello_bcpl.png)
+
+
 ## Bravo fonts and the AL font format
 
 This PDF describes various font formats used by the Alto http://www.bitsavers.org/pdf/xerox/alto/printing/AltoFontFormats_Oct1980.pdf
@@ -72,8 +104,11 @@ $ ./print_al_font Fonts/Splunk14.AL\!2
 ```
 **[TODO: Add my ImHex patter files that I attempted to put toguether to explore the fonts]**
 
-## Some notes
+> [!NOTE]
+> The "!2" in the end of the font files is an artefact of the versioning system used by the archives, the two means it is the second version of that particular file.
 
-- The "!2" in the end of the font files is an artefact of the versioning system used by the archives, the two means it is the second version of that particular file.
-- There's a lot of documentation in the archives and at bitsavers.org and probably copies of the Cedar environment source code out there besides the one at the Computer History Museum, like this one at the internet archive https://archive.org/details/bitsavers_xeroxparcteriencesCreatingaPortableCedar_1335085/page/n3/mode/2up they just need to be studied systematically.
-- I don't guarantee all information here is precise and correct and I welcome corrections.
+> [!NOTE]
+> There's a lot of documentation in the archives and at bitsavers.org and probably copies of the Cedar environment source code out there besides the one at the Computer History Museum, like this one at the internet archive https://archive.org/details/bitsavers_xeroxparcteriencesCreatingaPortableCedar_1335085/page/n3/mode/2up they just need to be studied systematically.
+
+> [!CAUTION]
+> I don't guarantee all information here is precise and correct and I welcome corrections.

@@ -22,7 +22,7 @@ I then looked if there was any BCPL compiler for Linux. The BCPL creator still m
 
 This is a BCPL reference manual from Xerox http://www.bitsavers.org/pdf/xerox/alto/bcpl/BCPL_Reference_Manual_Sep75.pdf
 
-What I later found when looking for the C source code of one of the Cedar ports to Unix, was binaries for Sun Microsystems SunOS (the OS before Solaris) for the architecture sun4 like https://xeroxparcarchive.computerhistory.org/_cdcsl_93-16_/1/cedar/cdpackage/solaris2/.index.html. After looking for the particular version of SunOS those binaries were compiled for SunOS 2.6 (aka Solaris 5.6) to try to increase my chances of success (and a archive.org hack/outage later) I found the installed ISO file **[TODO: link the internet achieve here]**. I did familiarized myself with SunOS and running it on QEmu using the _qemu-system-sparc_ emulator with (and I figured this out later when I got the Cedar environment to run) a particular flag **[TODO: document the flag here and add the full command line here]**. Turns out those binary files were part of a mostly functional version of Cedar. Besides telling QEmu to add a float point extension to the emulated Sparc CPU and after lot's of trial en error it was only necessary to rename the folders in https://xeroxparcarchive.computerhistory.org/_cdcsl_93-16_/1/cedar/release/.index.html since the capitalization of the names was lost when I downloaded them. **[TODO: find a way to keep the correct case or write a script to rename the folders correctly]**. You should be able to run the environment by replacing the custom X server that SunOS defaults to but I didn't try that and ran a Xephir nested X server on another machine.
+What I later found when looking for the C source code of one of the Cedar ports to Unix, was binaries for Sun Microsystems SunOS (the OS before Solaris) for the architecture sun4 like https://xeroxparcarchive.computerhistory.org/_cdcsl_93-16_/1/cedar/cdpackage/solaris2/.index.html. After looking for the particular version of SunOS those binaries were compiled for, SunOS 2.6 (aka Solaris 5.6), to try to increase my chances of success (and a archive.org hack/outage later) I found the installed ISO file **[TODO: link the internet achieve here]**. I did familiarized myself with SunOS and running it on QEmu using the _qemu-system-sparc_ emulator with (and I figured this out later when I got the Cedar environment to run) a particular flag *-cpu 'TI-SuperSparc-II,+float128'* (note we are adding *+float128* to what would be the default value for the -cpu flag). Turns out those binary files were part of a mostly functional version of Cedar. Besides telling QEmu to add a float point extension to the emulated Sparc CPU and after lot's of trial en error it was only necessary to rename the folders in https://xeroxparcarchive.computerhistory.org/_cdcsl_93-16_/1/cedar/release/.index.html since the capitalization of the names was lost when I downloaded them. You should be able to run the environment by replacing the custom X server that SunOS defaults to but I didn't try that and ran a Xephir nested X server on another machine.
 
 **[TODO: try to find this update mentioned at wikipedia "Last update was Solaris 2.6 5/98."]**
 
@@ -32,7 +32,59 @@ I haven't managed to compile any Mesa/Cedar code using the Mimosa compiler yet.
 
 ![My attempt at writing a "Hello, World!" program in Mesa](misc/hello_world_attempt.png)
 
-I'll include instructions on how I manage to run a version of the Cedar system on SunOS from https://xeroxparcarchive.computerhistory.org/_cdcsl_93-16_/1/cedar/.index.html in the future.
+
+## How to build yourself a Sun (OS install)
+Since most of us don't own a working (or not) SPARCstation you'll need to install a version of QEmu built with the SPARC emulator or install the package for it, something like *qemu-system-sparc* and also *qemu-utils* (to create an empty disk image). On a Debian based system should be enough to:
+
+```bash
+$ sudo apt install qemu-system-sparc qemu-utils
+```
+
+Download the install ISO from https://fsck.technology/software/Sun%20Microsystems/Solaris%20Install%20Media/Sun%20Solaris%202.6/Sun%20Solaris%202.6%2005-1998/ (this one marches the SHA1 hash of the ISO I believe I used)
+
+**TODO: Check the other ISO files from the same site, and also check the internet archive images**
+
+For now we will follow a guide I used. You can ignore the instructions about compiling QEmu and using the ROM file since you should be able to just use what QEmu provides, but this guide cover most of what you need to do https://astr0baby.wordpress.com/2018/09/22/running-solaris-2-6-sparc-on-qemu-system-sparc-in-linux-x86_64-mint-19/
+
+> [!WARNING]
+> The details about disk size, disk formatting and partition matter.
+
+**TODO: Maybe document how to label (something SunOS requires) the disk on Linux as expected by SunOS before the installation if that was really possible to save one reboot. Add the how to mount a qcow2 image.**
+
+> [!TIP]
+> To be able to run the binaries I found and therefore run the Cedar system you must pass the flag *-cpu 'TI-SuperSparc-II,+float128'* when you call QEmu.
+
+```bash
+$ qemu-img create -f qcow2 sunos_26.qcow2 4G
+$ qemu-system-sparc -M SS-20 -cpu 'TI-SuperSparc-II,+float128' -net nic,macaddr=00:03:BA:04:A5:AD -net user -m slots=4,maxmem=256M -cdrom solaris_2.6_598_sparc.iso -M SS-20 -vga cg3 -smp 2 -hda sunos_26.qcow2
+```
+
+### Bonus
+In case you want to play around with [Forth](https://en.wikipedia.org/wiki/Forth_\(programming_language\)) you can boot one of the SPARCstation ROMS https://github.com/andarazoroflove/sparc and have a go with the *ok* prompt:
+
+```bash
+$ qemu-system-sparc -bios ss5.bin -M SS-5
+```
+
+You need to press the key Stop-A, and since we don't have a Sun keyboard, go on the menu View > compatmonitor0 or just press CTRL+ALT+2 and type *sendkey stop-a* then menu View > sun-tcg or CTRL+ALT+1 to go back. Try typing this at the *ok* prompt:
+
+```forth
+5 2 + 10 * .
+```
+
+Of course QEmu's included version of OpenFirmware is also a Forth prompt without the *ok* part so we can so that same without the proprietary firmware.
+
+## Getting very own Cedar
+Now that we have a "machine" running SunOS 2.6 we better backup the disk image by coping sunos_26.qcow2 to something like sunos_26.qcow2.back before we proceed. And then...
+
+I'll later include instructions on how I manage to run a version of the Cedar system on SunOS from https://xeroxparcarchive.computerhistory.org/_cdcsl_93-16_/1/cedar/.index.html in the future. Maybe a script to run on SunOS (maybe there are no way to download anything, maybe you could install Netscape :raised_eyebrow: ...it does have that browser written in Java out of the box though)
+
+Basically a recursive wget from the URL above but we can do a better than that, since we might need to rename the folders anyway we might as well put the download as part of a script. Check the Makefile to see the flags I'm using to download fonts.
+
+> [!CAUTION]
+> You need to set the environment variable **TODO: check if it's XEROXCEDAR or something**
+
+**[TODO: find a way to keep the correct case or write a script to rename the folders correctly]**
 
 
 ## Other links

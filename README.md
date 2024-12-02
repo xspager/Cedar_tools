@@ -32,6 +32,7 @@ I haven't managed to compile any Mesa/Cedar code using the Mimosa compiler yet.
 
 ![My attempt at writing a "Hello, World!" program in Mesa](misc/hello_world_attempt.png)
 
+https://xeroxparcarchive.computerhistory.org/_cdcsl_93-16_/1/ppcr/v1.13/.v1.12.README.html mentions plans for a Linux port of the portable Cedar runtime.
 
 ## How to build yourself a Sun (OS install)
 Since most of us don't own a working (or not) SPARCstation you'll need to install a version of QEmu built with the SPARC emulator or install the package for it, something like *qemu-system-sparc* and also *qemu-utils* (to create an empty disk image). On a Debian based system should be enough to:
@@ -72,9 +73,9 @@ You need to press the key Stop-A, and since we don't have a Sun keyboard, go on 
 5 2 + 10 * .
 ```
 
-Of course QEmu's included version of OpenFirmware is also a Forth prompt without the *ok* part so we can so that same without the proprietary firmware.
+Of course QEmu's included version of OpenFirmware is also a Forth prompt without the *ok* part so we can so that same without the proprietary firmware. Go check https://learnxinyminutes.com/docs/forth/ for a bit more.
 
-## Getting very own Cedar
+## Getting your very own Cedar
 Now that we have a "machine" running SunOS 2.6 we better backup the disk image by coping sunos_26.qcow2 to something like sunos_26.qcow2.back before we proceed. And then...
 
 I'll later include instructions on how I manage to run a version of the Cedar system on SunOS from https://xeroxparcarchive.computerhistory.org/_cdcsl_93-16_/1/cedar/.index.html in the future. Maybe a script to run on SunOS (maybe there are no way to download anything, maybe you could install Netscape :raised_eyebrow: ...it does have that browser written in Java out of the box though)
@@ -91,8 +92,8 @@ Basically a recursive wget from the URL above but we can do a better than that, 
 
 - Ken Shirriff's [Simulating a Xerox Alto with the ContrAlto simulator: games and Smalltalk](http://www.righto.com/2016/10/simulating-xerox-alto-with-contralto.html)
 - Ken did manage to compile a hello world BCPL program on the Alto (emulator): ["Hello world" in the BCPL language on the Xerox Alto simulator](http://www.righto.com/2016/06/hello-world-in-bcpl-language-on-xerox.html)
-- End of course the Alto Restoration playlist https://www.youtube.com/playlist?list=PL-_93BVApb58I3ZV67LW3S_JEMFnDrQDj where CuriousMark, Ken Shirriff and Carl Claunch fix Alan Kay's Alto, if I'm not mistaken.
-
+- And of course the Alto Restoration playlist https://www.youtube.com/playlist?list=PL-_93BVApb58I3ZV67LW3S_JEMFnDrQDj where CuriousMark, Ken Shirriff and Carl Claunch fix Alan Kay's Alto, if I'm not mistaken.
+- Pascal in Cedar (Mesa?) **TODO find link**
 
 ## Goal of this repo
 
@@ -101,7 +102,9 @@ This repository will holds some incomplete tools and experiments with code and f
 
 ## My goals
 - [x] [Hello world in BCLP on the Alto](#hello-world-in-bcpl)
+- [ ] Understand how to handle the font formats AL and STRIKE and maybe find some good tool to write clear binary file parsers/readers
 - [x] Tool to convert PIC files to something modern
+- [ ] Smallest QEmu disk image that can fit Cedar
 - [ ] Hello world in Mesa
 - [ ] Hello world in Cedar
 - [ ] HTTP server maybe? :raised_eyebrow:
@@ -131,7 +134,7 @@ let Main() be
 ![Hello world in BCPL running on the ContrAltoJS](misc/hello_bcpl.png)
 
 
-## Bravo fonts and the AL font format
+### Bravo fonts and the AL font format
 
 This PDF describes various font formats used by the Alto http://www.bitsavers.org/pdf/xerox/alto/printing/AltoFontFormats_Oct1980.pdf
 

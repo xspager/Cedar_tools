@@ -1,5 +1,10 @@
 # Vim files
 *.swp
+# No Python cache files
+*.pyc
 
 # We don't want to store the fonts
 Fonts/*
+
+# No Smalltalk sourcecode
+Smalltalk-76/*

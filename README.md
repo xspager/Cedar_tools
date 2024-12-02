@@ -101,6 +101,7 @@ This repository will holds some incomplete tools and experiments with code and f
 
 ## My goals
 - [x] [Hello world in BCLP on the Alto](#hello-world-in-bcpl)
+- [x] Tool to convert PIC files to something modern
 - [ ] Hello world in Mesa
 - [ ] Hello world in Cedar
 - [ ] HTTP server maybe? :raised_eyebrow:
@@ -155,6 +156,18 @@ $ make
 $ ./print_al_font Fonts/Splunk14.AL\!2
 ```
 **[TODO: Add my ImHex patter files that I attempted to put toguether to explore the fonts]**
+
+
+### Tool to convert PIC files to something modern
+
+You can convert PIC files to [Netpbm](https://netpbm.sourceforge.net/doc/pbm.html) files pbm using the Python script *pic_to_pbm.py* then using *pam_to_png* to convert it PNG. The .pbm file should be viwable with many software but nothing beats PNG for widespread support.
+
+```bash
+$ python3 ../pic_to_pnm.py elf.pic\!1 elf.pbm
+$ pamtopng elf.pbm > elf.png
+```
+
+![elf.pic from https://xeroxalto.computerhistory.org/Filene/Smalltalk-76/.index.html](misc/elf.png)
 
 > [!NOTE]
 > The "!2" in the end of the font files is an artefact of the versioning system used by the archives, the two means it is the second version of that particular file.

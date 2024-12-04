@@ -9,7 +9,7 @@ download_bravox_fonts:
 	mkdir -p Fonts
 	cd Fonts && wget -c -r -nd -R "*.html*" -r "*.pdf*" https://xeroxparcarchive.computerhistory.org/indigo/bravox/fonts/.index.html; echo $?
 
-download_altofonts:
+download_altofonts_original:
 	mkdir -p Fonts
 	cd Fonts && wget -c -r -nd -R "*.html*" -r "*.pdf*" https://xeroxparcarchive.computerhistory.org/indigo/altofonts/original/.index.html; echo $?
 

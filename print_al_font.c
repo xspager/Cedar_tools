@@ -154,7 +154,10 @@ int main(int argc, char *argv[])
     } else {
         char *text = argv[2];
         // Now we need (16 x strlen(text)) x 16 bits of height to place the pixels
-        uint16_t *out_buffer = malloc(strlen(text) * 16 * 16);
+        // uint16_t *out_buffer = malloc(strlen(text) * 16 * 16);
+        uint16_t out_buffer[16][strlen(text)];
+        memset(out_buffer, (uint16_t) 0, strlen(text) * 16 * 2);
+        assert(out_buffer!=NULL);
 
         for (int i = 0; i < strlen(text); i++) {
             uint16_t bit_buffer[16] = {0};
@@ -174,16 +177,26 @@ int main(int argc, char *argv[])
             // FIXME: respect the XW value
             // FIXME: write in less than 16 increments/spaces
 
-            //printf("XW = %d HD = %d XW = %d\n", swap_uint16(charData.XW), charData.HD,  charData.XH);
+            printf("XW = %d HD = %d XW = %d\n", swap_uint16(charData.XW), charData.HD,  charData.XH);
 
+#if 0
+            char print_buf0[18];
+            for (int x = 0; x < charData.XH; x++) {
+                sprintf(print_buf0, "%016b\n", swap_uint16(bit_buffer[x]));
+                replace(print_buf0, '0', ' ');
+                replace(print_buf0, '1', '#');
+                printf("%s", print_buf0);
+            }
+#endif
+            //printf("----------------------------------\n");
             for (int row = 0; row < charData.XH; row++) {
                 //printf("row %d \tbit_buffer = %016b\n", row, swap_uint16(bit_buffer[row]));
-                out_buffer[row+(16*i) + 16-charData.XH] = swap_uint16(bit_buffer[row]);
+                //out_buffer[row + 16-charData.XH][i] = swap_uint16(bit_buffer[row]);
+                out_buffer[row + 16-charData.XH][i] = bit_buffer[row];
             }
         }
-
         close(fd); // just in case
-
+#if 1
         char filename_buffer[50];
         sprintf(filename_buffer, "%s.pbm", argv[argc-1]);
 
@@ -193,28 +206,26 @@ int main(int argc, char *argv[])
             exit(-1);
         };
         char header[40];
-        sprintf(header, "P4\n%d %d\n", 16, (int) strlen(text) * 16);
-        write(new_fd, header, strlen(header));
-        write(new_fd, out_buffer, strlen(text) * 16 * 16);
+        sprintf(header, "P4\n%d %d\n", (int) strlen(text) * 16, 16);
+        int written = write(new_fd, header, strlen(header));
+        assert(written == strlen(header));
+        written = write(new_fd, (uint8_t *) &out_buffer, sizeof(out_buffer));
+        assert(written == sizeof(out_buffer));
+        fsync(new_fd);
         close(new_fd);
-
-        char *line_buffer = malloc((strlen(text) * 30) + 1);
-        char *line_buffer_ptr = line_buffer;
-        for (int j = 0; j < 16; j++) {
-            memset(line_buffer, ' ', strlen(text) * 16);
-            line_buffer[strlen(text) * 16] = '\0';
-            for (int k = 0; k < strlen(text); k++) {
-                sprintf(line_buffer_ptr, "%016b", out_buffer[j+(16*k)]);
-                line_buffer_ptr += 16;
+#endif
+        for (int y = 0; y < 16; y++) {
+            for (int x = 0; x < strlen(text); x++) {
+                char print_buf[17] = {0};
+                sprintf(print_buf, "%016b", out_buffer[y][x]);
+                replace(print_buf, '0', ' ');
+                replace(print_buf, '1', '#');
+                printf("%s", print_buf);
             }
-            replace(line_buffer, '0', ' ');
-            replace(line_buffer, '1', '#');
-            printf("%s\n", line_buffer);
-            line_buffer_ptr = line_buffer;
+            printf("|\n");
         }
-        free(line_buffer);
 
-        free(out_buffer);
+        //free(out_buffer);
     }
 
     return EXIT_SUCCESS;

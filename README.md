@@ -210,6 +210,14 @@ You should get a .pbm image file inside *Fonts/* with the same name of the font 
 
 ![Compromise after first attempt at exporing the text in Helvetica16](misc/Helvetica16_compromise_after_first_attempt_of_exporting_image.png)
 
+If you can ignore that the terminal prints some of the characters byte-reversed, now the .pbm file looks fine, I present you Helvetica16:
+![Finally, horizontal Helvetica16!](misc/Helvetica16_now_horizontal_for_real.png)
+![Finally, horizontal Helvetica16! (400x)](misc/Helvetica16_now_horizontal_for_real_big.png)
+
+And Classic14:
+![Classic14](misc/Classic14.png)
+![Classic14 (400x)](misc/Classic14_big.png)
+
 I added a ImHex pattern file for AL files at [./ImHex_pattern_files/al_font.hexpat](ImHex_pattern_files/al_font.hexpat), it probably could be better and more useful.
 
 

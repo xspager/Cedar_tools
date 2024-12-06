@@ -109,7 +109,7 @@ This repository will holds some incomplete tools and experiments with code and f
 - [x] [Hello world in BCLP on the Alto](#hello-world-in-bcpl)
 - [ ] Try to write a BCPL program that parses the AL font
 - [ ] Understand how to handle the font formats AL and STRIKE and maybe find some good tool to write clear binary file parsers/readers
-- [x] Tool to convert PIC files to something modern
+- [x] [Tool to convert PIC files to something modern](#tool-to-convert-pic-files-to-something-modern)
 - [ ] Smallest QEmu disk image that can fit Cedar
 - [ ] Hello world in Mesa
 - [ ] Hello world in Cedar

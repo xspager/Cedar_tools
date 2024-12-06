@@ -72,8 +72,14 @@ int main(int argc, char *argv[])
     int print_pointers = 1;
     int print_text = 0;
     if (argc >= 2) {
-        if (strncmp("-pointers", argv[1], 10) == 0) print_pointers = 1;
-        if (strncmp("-header", argv[1], 7) == 0) print_header = 1;
+        if (strncmp("-pointers", argv[1], 10) == 0) {
+            print_pointers = 1;
+            print_header = 0;
+        }
+        if (strncmp("-header", argv[1], 7) == 0) {
+            print_header = 1;
+            print_pointers = 0;
+        }
         if (strncmp("-text", argv[1], 7) == 0) {
             print_header = 0;
             print_pointers = 0;
@@ -152,7 +158,7 @@ int main(int argc, char *argv[])
 
         for (int i = 0; i < strlen(text); i++) {
             uint16_t bit_buffer[16] = {0};
-            uint16_t charData_offset = swap_uint16(al.pointers[text[i]]);
+            uint16_t charData_offset = swap_uint16(al.pointers[(int)text[i]]);
             int real_offset = (charData_offset + text[i] + 2)*2;
             //printf("offset for %c is 0x%X\n", text[i], real_offset);
             off_t cur_offset = lseek(fd, real_offset, SEEK_SET);
@@ -187,7 +193,7 @@ int main(int argc, char *argv[])
             exit(-1);
         };
         char header[40];
-        sprintf(header, "P4\n%d %d\n", 16, strlen(text) * 16);
+        sprintf(header, "P4\n%d %d\n", 16, (int) strlen(text) * 16);
         write(new_fd, header, strlen(header));
         write(new_fd, out_buffer, strlen(text) * 16 * 16);
         close(new_fd);

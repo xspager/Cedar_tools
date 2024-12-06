@@ -1,6 +1,6 @@
 ALL=print_al_font
 
-CFLAGS+= -Wall -Wpedantic -ggdb
+CFLAGS+= -Wall -Wpedantic -ggdb -std=c99
 
 print_al_font:	print_al_font.c
 	$(CC) $(CFLAGS) -o print_al_font print_al_font.c

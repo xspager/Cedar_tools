@@ -16,4 +16,4 @@ let Main() be
 ]
 ```
 
-![Hello world in BCPL running on the ContrAltoJS](misc/hello_bcpl.png)
+![Hello world in BCPL running on the ContrAltoJS](../misc/hello_bcpl.png)

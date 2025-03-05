@@ -92,6 +92,22 @@ Basically a recursive wget from the URL above but we can do a better than that, 
 
 **[TODO: find a way to keep the correct case or write a script to rename the folders correctly]**
 
+## Running Cedar
+
+> [!CAUTION]
+> This is particularly not ideal
+
+On a machine running proper X you will need to install Xephyr and run it:
+```bash
+$ Xephyr :2 -ac -listen tcp -resizeable
+```
+
+On SunOS you will mount a share with the Cedar files and run:
+```bash
+$ XeroxCedar=./Cedar DISPLAY=THE_OTHER_MACHINE_IP:2 ./cdpackage/solaris2/x11v
+```
+
+Now you should be able to use the Cedar system on the Xephyr window.
 
 ## Other links
 

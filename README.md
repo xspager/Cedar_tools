@@ -94,6 +94,8 @@ Basically a recursive wget from the URL above but we can do a better than that, 
 
 ## Running Cedar
 
+You need to follow the guide on "*CedarDocs/CedarPrimer.ps*" (convert it to pdf for convenience) to create a ```.cedar.profile```
+
 > [!CAUTION]
 > This is particularly not ideal
 

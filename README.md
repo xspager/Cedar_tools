@@ -98,9 +98,6 @@ I previously wrote that you'd need to crowl the Xerox Archive but you can just d
 
 I added a make target to download it for convenience so just run `make download_cedar_iso` on this repository root. Pass this iso to qemu with `-cdrom DISC_IMAGE_NUMBER_1.iso` and it should mount automatically inside SunOS
 
-> [!CAUTION]
-> You need to set the environment variable **TODO: check if it's XEROXCEDAR or something**
-
 ~~**[TODO: find a way to keep the correct case or write a script to rename the folders correctly]**~~
 
 ## Running Cedar
@@ -129,6 +126,7 @@ Now you should be able to use the Cedar system on the Xephyr window.
 - And of course the Alto Restoration playlist https://www.youtube.com/playlist?list=PL-_93BVApb58I3ZV67LW3S_JEMFnDrQDj where CuriousMark, Ken Shirriff and Carl Claunch fix Alan Kay's Alto, if I'm not mistaken.
 - Pascal in Cedar (Mesa?) **TODO find link**
 - https://xeroxalto.computerhistory.org/xerox_alto_file_system_archive.html
+- CHM: Mesa History Collection https://softwarepreservation.computerhistory.org/mesa/
 
 ## Goal of this repo
 This repository will holds some incomplete tools and experiments with code and fonts from Xerox PARC filesystem archive https://xeroxparcarchive.computerhistory.org/Xerox_PARC_source_code.html and documents my work.
@@ -137,7 +135,7 @@ This repository will holds some incomplete tools and experiments with code and f
 ## My goals
 - [x] [Hello world in BCLP on the Alto](goals/hello_world_in_bcpl.md)
 - [ ] Try to write a BCPL program that parses the AL font
-- [ ] [Understand how to handle the font formats AL and STRIKE and maybe find some good tool to write clear binary file parsers/readers](goals/bravo_fonts_and_al_format.md)
+- [x] [Understand how to handle the font formats AL and STRIKE and maybe find some good tool to write clear binary file parsers/readers](goals/bravo_fonts_and_al_format.md)
 - [x] [Tool to convert PIC files to something modern](goals/tool_to_convert_pic_files.md)
 - [ ] Smallest QEmu disk image that can fit Cedar
 - [ ] Hello world in Mesa
@@ -145,7 +143,11 @@ This repository will holds some incomplete tools and experiments with code and f
 - [ ] HTTP server maybe? :raised_eyebrow:
 - [ ] Get Mimosa to generate C code that compiles and run Linux :exploding_head:
 - [ ] Compile Cedar for Linux :exploding_head:
-
+- [ ] Parser for the fonts formats (Strike, AL...)
+- [ ] Parser for Sil files
+- [ ] Parser for Press files
+- [ ] Parser for PrePress files
+- [ ] Modula on Cedar
 
 > [!NOTE]
 > The "!2" in the end of the font files is an artefact of the versioning system used by the archives, the two means it is the second version of that particular file.
@@ -155,3 +157,4 @@ This repository will holds some incomplete tools and experiments with code and f
 
 > [!CAUTION]
 > I don't guarantee all information here is precise and correct and I welcome corrections.
+

@@ -1,0 +1,66 @@
+diff -ruN -x '*.orig' -x '*.o' src/tioga.c src_new/tioga.c
+--- src/tioga.c	2026-11-12 07:35:19.372348142 -0300
++++ src_new/tioga.c	2026-11-12 07:26:10.389627461 -0300
+@@ -4,12 +4,17 @@
+    December, 1990 */
+ 
+ #include <stdio.h>
++#include <stdlib.h>
+ #include <sys/types.h>
+ #include <sys/stat.h>
+ #include "tioga.h"
+ #include "tread.h"
+ 
+-extern char *malloc();
++/*extern char *malloc();*/
++
++static int DoWork(buf, r);
++static FixNewlines(s, len);
++static long GetLookChars(r, n);
+ 
+ #define TRUE	1
+ #define FALSE	0
+diff -ruN -x '*.orig' -x '*.o' src/tread.c src_new/tread.c
+--- src/tread.c	2026-11-12 07:35:19.372618369 -0300
++++ src_new/tread.c	2026-11-12 07:26:10.385406298 -0300
+@@ -3,19 +3,28 @@
+    David Nichols
+    December, 1990 */
+ 
++#ifndef WASM
+ #include <stdio.h>		/* for NULL */
+ #include <ctype.h>
++#include <stdlib.h>
++#include <string.h>
++#endif
+ #include "tioga.h"
+ #include "tread.h"
+ 
+ #define TRUE	1
+ #define FALSE	0
+ 
++/*
+ extern char *malloc();
+ extern char *realloc();
+ long GetLength();
++*/
+ char *strsav();
+ 
++static int CheckID(pp, id);
++static long GetLength(pp);
++
+ unsigned char trailerID[] = { 0205, 0227 };
+ unsigned char commentID[] = { 0, 0 };
+ unsigned char controlID[] = { 0235, 0312 };
+diff -ruN -x '*.orig' -x '*.o' src/tread.h src_new/tread.h
+--- src/tread.h	2026-11-12 07:35:19.372663015 -0300
++++ src_new/tread.h	2026-11-12 07:26:10.389324305 -0300
+@@ -48,7 +48,7 @@
+ extern enum tioga_ControlOp tread_GetOp(/* struct tread_Reader *r */);
+ 
+ /* Get a byte from the control stream. */
+-extern int tread_GetInt(/* struct tread_Reader *r */);
++/*extern int tread_GetInt(*//* struct tread_Reader *r *//*);*/
+ 
+ /* Get an integer from the control stream. */
+ extern long tread_GetInt(/* struct tread_Reader *r */);

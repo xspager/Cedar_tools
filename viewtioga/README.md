@@ -19,3 +19,5 @@ I will download the sources from the Xerox Archive and patch them. If you make m
 $ wget https://xeroxparcarchive.computerhistory.org/_cdcsl_93-16_/1/cedar/release/simpleexample/ReverseName.mesa
 $ ./viewtioga/src/dump_tioga ReverseName.mesa
 ```
+
+For now a `main` is also built from main.c, it does the same thing as dump_tioga but the optional flag `-p` causes it to make comments in the tioga file show in italic in the terminal.

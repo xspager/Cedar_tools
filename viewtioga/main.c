@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <unistd.h>
+#include <errno.h>
 #include "tioga.h"
 #include "tread.h"
 
@@ -49,14 +50,18 @@ int main(int argc, char *argv[])
     FILE *file;
     char *data = "Nothing";
 
-    if (argc < 2){
+    parseFlags(argc, argv, &flags);
+
+    if (optind >= argc){
         printf("usage: %s: tioga_file\n", argv[0]);
         return EXIT_FAILURE;
     }
 
-    parseFlags(argc, argv, &flags);
-
-    file = fopen(argv[1], "r");
+    file = fopen(argv[optind], "r");
+    if (file == NULL) {
+        perror(NULL);
+        exit(EXIT_FAILURE);
+    }
 
     /* Now we're ready to go */
     r = (struct tread_Reader *) malloc(sizeof (*r));

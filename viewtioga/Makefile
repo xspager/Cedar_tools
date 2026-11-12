@@ -1,4 +1,5 @@
-CFLAGS = -std=c89 -ggdb -O0 -Wall
+CFLAGS =-ggdb -O0 -Wall
+LEGACY_CFLAGS = -std=c89 $(CFLAGS)
 #WASM_CFLAGS=\
 #	--target=wasm32 \
 #	-nostdlib \
@@ -11,16 +12,16 @@ CFLAGS = -std=c89 -ggdb -O0 -Wall
 all:	main dump_tioga
 
 tread.o:	tread.h tread.c
-	$(CC) $(CFLAGS) -c -o tread.o tread.c
+	$(CC) $(LEGACY_CFLAGS) -c -o tread.o tread.c
 
 tioga.o:	tioga.h tioga.c
-	$(CC) $(CFLAGS) -c -o tioga.o tioga.c
+	$(CC) $(LEGACY_CFLAGS) -c -o tioga.o tioga.c
 
 main:	main.c tread.o tioga.o
-	$(CC) $(CFLAGS) -o main main.c tioga.o tread.o
+	$(CC) $(CFLAGS) -std=gnu89 -o main main.c tioga.o tread.o
 
 dump_tioga:	main.c tread.o tioga.o
-	$(CC) $(CFLAGS) -DDUMP -o dump_tioga main.c tioga.o tread.o
+	$(CC) $(CFLAGS) -std=gnu89 -DDUMP -o dump_tioga main.c tioga.o tread.o
 
 #tread.wasm: tread.h tread.c
 #	clang $(WASM_CFLAGS) -DWASM -o tread.wasm tread.c

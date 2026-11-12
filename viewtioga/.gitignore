@@ -1,0 +1,9 @@
+bin/
+man/
+lib/
+top/
+src/
+README
+!src/main.c
+!src/README.md
+!src/Makefile

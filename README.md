@@ -39,6 +39,9 @@ I haven't managed to compile any Mesa/Cedar code using the Mimosa compiler yet.
 
 https://xeroxparcarchive.computerhistory.org/_cdcsl_93-16_/1/ppcr/v1.13/.v1.12.README.html mentions plans for a Linux port of the portable Cedar runtime.
 
+## (NEW) Dumping tioga files
+I managed to hack the viewtioga source and get something out of it. Check the [viewtioga/README.md](viewtioga/README.md) for details.
+
 ## How to build yourself a Sun (OS install)
 Since most of us don't own a working (or not) SPARCstation you'll need to install a version of QEmu built with the SPARC emulator or install the package for it, something like *qemu-system-sparc* and also *qemu-utils* (to create an empty disk image). On a Debian based system should be enough to:
 
@@ -117,9 +120,9 @@ Now you should be able to use the Cedar system on the Xephyr window.
 - Ken did manage to compile a hello world BCPL program on the Alto (emulator): ["Hello world" in the BCPL language on the Xerox Alto simulator](http://www.righto.com/2016/06/hello-world-in-bcpl-language-on-xerox.html)
 - And of course the Alto Restoration playlist https://www.youtube.com/playlist?list=PL-_93BVApb58I3ZV67LW3S_JEMFnDrQDj where CuriousMark, Ken Shirriff and Carl Claunch fix Alan Kay's Alto, if I'm not mistaken.
 - Pascal in Cedar (Mesa?) **TODO find link**
+- https://xeroxalto.computerhistory.org/xerox_alto_file_system_archive.html
 
 ## Goal of this repo
-
 This repository will holds some incomplete tools and experiments with code and fonts from Xerox PARC filesystem archive https://xeroxparcarchive.computerhistory.org/Xerox_PARC_source_code.html and documents my work.
 
 

@@ -8,3 +8,6 @@ Fonts/*
 
 # No Smalltalk sourcecode
 Smalltalk-76/*
+
+tmp/
+DISC_IMAGE_NUMBER_1.iso

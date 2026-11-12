@@ -23,8 +23,8 @@ download_smalltalk_76:
 	mkdir -p Smalltalk-76
 	cd Smalltalk-76 && wget -c -r -nd -R "*.html*" -r "*.pdf*" https://xeroxalto.computerhistory.org/Filene/Smalltalk-76/.index.html; echo $?
 
-#download_cedar_iso: 
-
+download_cedar_iso:
+	wget -c https://softwarepreservation.computerhistory.org/mesa/src/cedar/DISC_IMAGE_NUMBER_1.iso
 
 download_viewtioga:
 	# mkdir -p viewtioga

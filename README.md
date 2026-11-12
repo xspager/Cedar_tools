@@ -90,7 +90,7 @@ Of course QEmu's included version of OpenFirmware is also a Forth prompt without
 ## Getting your very own Cedar
 Now that we have a "machine" running SunOS 2.6 we better backup the disk image by coping sunos_26.qcow2 to something like sunos_26.qcow2.back before we proceed. And then...
 
-~~I'll later include instructions on how I manage to run a version of the Cedar system on SunOS from https://xeroxparcarchive.computerhistory.org/_cdcsl_93-16_/1/cedar/.index.html in the future. Maybe a script to run on SunOS (maybe there are no way to download anything, maybe you could install Netscape :raised_eyebrow: ...it does have that browser written in Java out of the box though)
+~~I'll later include instructions on how I manage to run a version of the Cedar system on SunOS from https://xeroxparcarchive.computerhistory.org/_cdcsl_93-16_/1/cedar/.index.html in the future. Maybe a script to run on SunOS (maybe there are no way to download anything, maybe you could install Netscape :raised_eyebrow: ...it does have that browser written in Java out of the box though)~~
 
 ~~Basically a recursive wget from the URL above but we can do a better than that, since we might need to rename the folders anyway we might as well put the download as part of a script. Check the Makefile to see the flags I'm using to download fonts.~~
 

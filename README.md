@@ -119,6 +119,18 @@ $ XeroxCedar=./Cedar DISPLAY=THE_OTHER_MACHINE_IP:2 ./cdpackage/solaris2/x11v
 
 Now you should be able to use the Cedar system on the Xephyr window.
 
+You can for convenience allow the X server SunOS to forgo authentication and let Cedar just connect to it. Like:
+
+```bash
+$ /usr/X/bin/xhost +
+$ cd $XeroxCedar/cdpackage/solaris2
+$ ./x11v
+```
+
+## PCR
+
+PCR or Portable Cedar Runtime is what allows Cedar to run on SunOS and other systems that are not D-Machines
+
 ## Other links
 
 - Ken Shirriff's [Simulating a Xerox Alto with the ContrAlto simulator: games and Smalltalk](http://www.righto.com/2016/10/simulating-xerox-alto-with-contralto.html)
@@ -137,7 +149,7 @@ This repository will holds some incomplete tools and experiments with code and f
 - [ ] Try to write a BCPL program that parses the AL font
 - [x] [Understand how to handle the font formats AL and STRIKE and maybe find some good tool to write clear binary file parsers/readers](goals/bravo_fonts_and_al_format.md)
 - [x] [Tool to convert PIC files to something modern](goals/tool_to_convert_pic_files.md)
-- [ ] Smallest QEmu disk image that can fit Cedar
+- [ ] Smallest QEmu disk image that can run Cedar 10.1
 - [ ] Hello world in Mesa
 - [ ] Hello world in Cedar
 - [ ] HTTP server maybe? :raised_eyebrow:
@@ -147,7 +159,7 @@ This repository will holds some incomplete tools and experiments with code and f
 - [ ] Parser for Sil files
 - [ ] Parser for Press files
 - [ ] Parser for PrePress files
-- [ ] Modula on Cedar
+- [ ] Modula on Cedar?
 
 > [!NOTE]
 > The "!2" in the end of the font files is an artefact of the versioning system used by the archives, the two means it is the second version of that particular file.
